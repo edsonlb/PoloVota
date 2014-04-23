@@ -1,0 +1,6 @@
+# Application files (local)
+*.pyc
+*.sqlite3
+
+# Get our settings.py file on README.md to see the configuration
+settings.py
