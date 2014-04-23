@@ -5,4 +5,3 @@ Project developed for the Technology Hub of Franca, São Paulo, Brazil (Polo Fra
 
 
 **Edson Lopes & Lucas Castejon**
-    
