@@ -1,6 +1,6 @@
 #coding: utf-8
 from django import forms
-from app_polo.projects.models import Projeto
+from projects.models import Projeto
 from django.forms import ModelForm, TextInput, EmailInput
 from django.utils.translation import ugettext as _
 

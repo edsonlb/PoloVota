@@ -1,5 +1,4 @@
 from django.db import models
-
 from django.utils.translation import ugettext_lazy as _
 
 class Projeto(models.Model):
@@ -17,7 +16,7 @@ class Projeto(models.Model):
 	cpfLider = models.CharField(_('cpf'), max_length=11, unique=True)
 	
 	created_at = models.DateTimeField(_('criado em'), auto_now_add=True)
-	etapa = models.IntegerFiled(_('etapa'), default=0)
+	etapa = models.CharField(_('etapa'), max_length=3)
 
 	class Meta:
 		ordering = ['created_at']
