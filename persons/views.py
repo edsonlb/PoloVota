@@ -24,12 +24,11 @@ def salvar(request):
         print "%s" % repr(form.errors)
 
         if form.is_valid():
-            form.save()
-            #person = Person(**form.cleaned_data)
-            #person.save()
+            #form.save()
+            person = Person(**form.cleaned_data)
+            person.save()
             return HttpResponseRedirect('/persons/')
         else:
-            print "ERRO1"
             return render(request, 'form.html', {'form': form})   
     else:
         return render(request, 'form.html', {'form': AvaliadorForm()})
