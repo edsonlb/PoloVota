@@ -1,0 +1,43 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Avaliadores{% endblock titulo %}
+
+{% block conteudo %}
+<div align="center"> 
+  <form role="form" method="POST" action="/persons/search/">{% csrf_token %}
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-10">
+          <input type="text" class="form-control" id="textoBusca" name="textoBusca" value="{{ textoBusca }}" placeholder="Digite um texto para a busca...">
+        </div>
+        <div class="col-md-2" align="center">
+          <button type="submit" class="btn btn-primary">Pesquisar <span class="glyphicon glyphicon-search"></span></button>
+        </div>
+      </div>
+    </div>  
+  </form>
+
+</div>
+<hr>
+<div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Empresa</th>
+            <th>E-Mail</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for person in persons %}
+          <tr>
+            <td><a href="/pessoas/editar/{{ pessoa.pk }}">{{ person.first_name }}</a></td>
+            <td>{{ person.Empresa }}</td>
+            <td>{{ person.email }}</td>
+          </tr>
+        {% endfor %}  
+        </tbody>
+      </table>
+</div><!-- FIM TABELA -->
+
+{% endblock conteudo %}
