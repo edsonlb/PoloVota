@@ -1,34 +1,44 @@
-{% extends 'base.html' %}
+{% extends 'template.html' %}
 
-{% block titulo %}Formulário da Pessoa{% endblock titulo %}
+{% block titulo %}Avaliador{% endblock titulo %}
 
 {% block conteudo %}
-<form class="form-horizontal" action="/pessoas/salvar/" method="POST" role="form">{% csrf_token %}
-
-    <input type="hidden" id="codigo" name="codigo" value="{{ pessoa.pk|default_if_none:'0' }}">
+<form class="form-horizontal" action="/persons/save/" method="POST" role="form">
+{% csrf_token %}
 
     <div class="form-group">
-        <label for="idNome" class="col-sm-2 control-label">Nome</label>
+        <label for="{{ form.empresa.id_for_label }}" class="col-sm-2 control-label">Empresa onde Trabalha</label>
         <div class="col-sm-10">
-            <input name="nome" id="idNome" value="{{ pessoa.nome }}" type="text" class="form-control"  placeholder="Nome Completo...">
+            <input id="{{ form.empresa.id_for_label }}" name="{{ form.empresa.name }}"  value="{{ form.empresa.value }}"  placeholder="Último nome..." type="text" class="form-control">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="idLogradouro" class="col-sm-2 control-label">Logradouro</label>
+        <label for="{{ form.first_name.id_for_label }}" class="col-sm-2 control-label">Nome</label>
         <div class="col-sm-10">
-            <input name="logradouro" id="idLogradouro" value="{{ pessoa.logradouro|default_if_none:'' }}" type="text" class="form-control"  placeholder="Rua, Número, Bairro e etc...">
+            <input id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}"  value="{{ form.first_name.value }}"  placeholder="Primeiro Nome..." type="text" class="form-control">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="idTelefone" class="col-sm-2 control-label">Contatos</label>
-            <div class="col-sm-5">
-                <input name="telefone" id="idTelefone" value="{{ pessoa.telefone|default_if_none:'' }}" type="text" class="form-control"  placeholder="(00) 0-0000-0000" data-mask="(99) 9-9999-9999">
-            </div>
-            <div class="col-sm-5">
-                <input name="email" id="idEmail" value="{{ pessoa.email|default_if_none:'' }}" type="email" class="form-control" placeholder="nome@dominio.com">
-            </div>
+        <label for="{{ form.last_name.id_for_label }}" class="col-sm-2 control-label">Sobrenome</label>
+        <div class="col-sm-10">
+            <input id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}"  value="{{ form.last_name.value }}"  placeholder="Último nome..." type="text" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.email.id_for_label }}" class="col-sm-2 control-label">E-Mail</label>
+        <div class="col-sm-10">
+            <input id="{{ form.email.id_for_label }}" name="{{ form.email.name }}"  value="{{ form.email.value }}"  placeholder="Último nome..." type="email" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.password.id_for_label }}" class="col-sm-2 control-label">Senha</label>
+        <div class="col-sm-10">
+            <input id="{{ form.password.id_for_label }}" name="{{ form.password.name }}"  value="{{ form.password.value }}"  placeholder="Senha..." type="password" class="form-control">
+        </div>
     </div>
 
     <hr>

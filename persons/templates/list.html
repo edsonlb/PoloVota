@@ -31,8 +31,8 @@
         <tbody>
         {% for person in persons %}
           <tr>
-            <td><a href="/pessoas/editar/{{ pessoa.pk }}">{{ person.first_name }}</a></td>
-            <td>{{ person.Empresa }}</td>
+            <td><a href="/persons/edit/{{ person.pk }}/">{{ person.first_name }}</a></td>
+            <td>{{ person.empresa }}</td>
             <td>{{ person.email }}</td>
           </tr>
         {% endfor %}  
