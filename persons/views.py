@@ -21,9 +21,12 @@ def salvar(request):
     if request.method == 'POST':
         form = AvaliadorForm(request.POST)
         
+        print "%s" % repr(form.errors)
+
         if form.is_valid():
-            person = Person(**form.cleaned_data)
-            person.save()
+            form.save()
+            #person = Person(**form.cleaned_data)
+            #person.save()
             return HttpResponseRedirect('/persons/')
         else:
             print "ERRO1"
