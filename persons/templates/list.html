@@ -3,7 +3,7 @@
 {% block titulo %}Avaliadores{% endblock titulo %}
 
 {% block conteudo %}
-<div align="center"> 
+<div align="center">
   <form role="form" method="POST" action="/persons/search/">{% csrf_token %}
     <div class="form-group">
       <div class="row">
@@ -14,30 +14,32 @@
           <button type="submit" class="btn btn-primary">Pesquisar <span class="glyphicon glyphicon-search"></span></button>
         </div>
       </div>
-    </div>  
+    </div>
   </form>
 
 </div>
 <hr>
 <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Empresa</th>
-            <th>E-Mail</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for person in persons %}
-          <tr>
-            <td><a href="/persons/edit/{{ person.pk }}/">{{ person.first_name }}</a></td>
-            <td>{{ person.empresa }}</td>
-            <td>{{ person.email }}</td>
-          </tr>
-        {% endfor %}  
-        </tbody>
-      </table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Usuário</th>
+        <th>Nome</th>
+        <th>Empresa</th>
+        <th>E-Mail</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for person in persons %}
+      <tr>
+        <td><a href="/persons/edit/{{ person.pk }}/">{{ person.username }}</a></td>
+        <td>{{ person.first_name }}</td>
+        <td>{{ person.empresa }}</td>
+        <td>{{ person.email }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div><!-- FIM TABELA -->
 
 {% endblock conteudo %}
