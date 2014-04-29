@@ -8,13 +8,10 @@ class Projeto(models.Model):
 	nomeIntegrante = models.CharField(_('integrante'), max_length=200)
 	redeSocial = models.CharField(_('rede social'), max_length=120, blank=True)
 	modelagem = models.CharField(_('modelagem'),  max_length=20, blank=True)
-
-	# Dados do Lider
 	nomeLider = models.CharField(_('lider'), max_length=100)
 	emailLider = models.EmailField(_('email'), unique=True)
 	telefoneLider = models.CharField(_('telefone'), max_length=20, blank=True)
 	cpfLider = models.CharField(_('cpf'), max_length=11, unique=True)
-	
 	created_at = models.DateTimeField(_('criado em'), auto_now_add=True)
 	etapa = models.CharField(_('etapa'), max_length=3)
 

@@ -3,75 +3,66 @@
 {% block titulo %}Home{% endblock titulo %}
 
 {% block conteudo %}
-<font color="#fff">
-	<h1>Formulário de inscrição dos Projetos</h1>
+<font>
+	<h1>Formulário de inscrição de Projetos</h1>
 </font>
-<form  action="." method="POST">
-{% csrf_token %}
+
+<form class="form-horizontal" action="." method="POST" role="form">
+		{% csrf_token %}
 	
-	<p>	
-		<!-- <font color="#fff"><label for="{{ form.tema.id_for_label }}"> {{ form.tema.label }}: </label></font> -->
-		{{ form.tema }}
-		{{ form.tema.errors }}
-	</p>
-
-	<p>
-		<!-- <font color="#fff"><label for="{{ form.projeto.id_for_label }}"> {{ form.projeto.label }}: </label></font> -->
-		{{ form.projeto }}
-		{{ form.projeto.errors }}
-	</p>
-
-	<p>
-		<!-- <font color="#fff"><label for="{{ form.nomeOrientador.id_for_label }}"> {{ form.nomeOrientador.label }}: </label></font> -->
-		{{ form.nomeOrientador }}
-		{{ form.nomeOrientador.errors }}
-	</p>
-
-	<p>
-		<!-- <font color="#fff"><label for="{{ form.nomeIntegrante.id_for_label }}"> {{ form.nomeIntegrante.label }}: </label></font> -->
-		{{ form.nomeIntegrante }}
-		{{ form.nomeIntegrante.errors }}
-	</p>
-
-	<p>
-		<!-- <font color="#fff"><label for="{{ form.redeSocial.id_for_label }}"> {{ form.redeSocial.label }}: </label></font> -->
-		{{ form.redeSocial }}
-		{{ form.redeSocial.errors }}
-	</p>
-
-	<p>
-		<!-- <font color="#fff"><label for="{{ form.modelagem.id_for_label }}"> {{ form.modelagem.label }}: </label></font> -->
-		{{ form.modelagem }}
-		{{ form.modelagem.errors }}
-	</p>
-
-	<p>
-		<!-- <font color="#fff"><label for="{{ form.nomeLider.id_for_label }}"> {{ form.nomeLider.label }}: </label></font> -->
-		{{ form.nomeLider }}
-		{{ form.nomeLider.errors }}
-	</p>
-
-	<p>
-		<!-- <font color="#fff"><label for="{{ form.emailLider.id_for_label }}"> {{ form.emailLider.label }}: </label></font> -->
-		{{ form.emailLider }}
-		{{ form.emailLider.errors }}
-	</p>
-
-	<p>
-		<!-- <font color="#fff"><label for="{{ form.telefoneLider.id_for_label }}"> {{ form.telefoneLider.label }}: </label></font> -->
-		{{ form.telefoneLider }}
-		{{ form.telefoneLider.errors }}
-	</p>
-
-	<p>
-		<!-- <font color="#fff"><label for="{{ form.cpfLider.id_for_label }}"> {{ form.cpfLider.label }}: </label></font> -->
-		{{ form.cpfLider }}
-		{{ form.cpfLider.errors }}
-	</p>
-
+		<div class="col-sm-10">            
+			{{ form.tema }}
+			{{ form.tema.errors }}
+        </div>
 	
-	 <font color="#1E90FF">
-	 	<input type="submit" value="Enviar!">
-	 </font>
+		<div class="col-sm-10">
+           {{ form.projeto }}
+			{{ form.projeto.errors }}
+        </div>
+
+		<div class="col-sm-10">
+           {{ form.nomeOrientador }}
+		   {{ form.nomeOrientador.errors }}
+        </div>
+			
+		<div class="col-sm-10">
+            {{ form.nomeIntegrante }}
+			{{ form.nomeIntegrante.errors }}
+        </div>
+		
+		<div class="col-sm-10">
+            {{ form.redeSocial }}
+			{{ form.redeSocial.errors }}
+        </div>
+		
+		<div class="col-sm-10">
+            {{ form.modelagem }}
+			{{ form.modelagem.errors }}
+        </div>
+		
+		<div class="col-sm-10">
+        	{{ form.nomeLider }}
+			{{ form.nomeLider.errors }}
+        </div>
+		
+		<div class="col-sm-10">
+            {{ form.emailLider }}
+			{{ form.emailLider.errors }}
+        </div>
+		
+		<div class="col-sm-10">
+           	{{ form.telefoneLider }}
+			{{ form.telefoneLider.errors }}
+        </div>
+		
+		<div class="col-sm-10">
+            {{ form.cpfLider }}
+			{{ form.cpfLider.errors }}
+        </div>
+		
+	
+	 <div align="center">
+        <button type="submit" class="btn btn-success">Salvar Registro</button>
+    </div>
 </form>
 {%endblock conteudo %}
