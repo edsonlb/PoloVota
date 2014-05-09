@@ -7,6 +7,7 @@ from django.utils.translation import ugettext as _
 class ProjetoForm(forms.ModelForm):
 	class Meta:
 		model = Projeto
+		
 		widgets = {
 			'tema' :TextInput(attrs={'class':'form-control', 'placeholder':_('Tema'), 'type':'text'}),
 			'projeto':TextInput(attrs={'class':'form-control', 'placeholder':_('Link do projeto'), 'type':'text'}),

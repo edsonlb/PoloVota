@@ -14,6 +14,8 @@ class Projeto(models.Model):
 	cpfLider = models.CharField(_('cpf'), max_length=11, unique=True)
 	created_at = models.DateTimeField(_('criado em'), auto_now_add=True)
 	etapa = models.CharField(_('etapa'), max_length=3)
+	tags = models.CharField(_('tags'), max_length=300)
+	universidade = models.CharField(_('universidade'), max_length=100)
 
 	class Meta:
 		ordering = ['created_at']
@@ -21,4 +23,4 @@ class Projeto(models.Model):
 		verbose_name_plural = _(u'projetos')
 
 	def __unicode__(self):
-		return self.tema
+		return self.tema + self.
