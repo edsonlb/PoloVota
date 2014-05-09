@@ -1,0 +1,19 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Detalhe do Projeto{% endblock titulo %}
+
+{% block conteudo %}
+	<div class="col-sm-6" align="center">
+    	<img class="img-responsive" src="{{ STATIC_URL }}/logo/logo_G.png">
+    </div>
+    
+    <div class="col-sm-6" align="center">
+    	<h2>Olá! Seja Bem-Vindo!</h2> 
+        Cadastre o seu projeto aqui para concorrer à prêmios do Pólo Francano de Tecnologia!<br />
+        (Descrição e regras aqui...)
+        <br />
+        <a href="/projects/welcome">Cadastrar</a>
+        <a href="/login">Login</a>
+    </div>
+		
+{%endblock conteudo %}

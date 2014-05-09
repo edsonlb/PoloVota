@@ -1,0 +1,13 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Home{% endblock titulo %}
+
+{% block conteudo %}
+	<div class="col-sm-6" align="center">
+    	<img class="img-responsive" src="{{ STATIC_URL }}/logo/logo_G.png">
+            </div>
+            <div class="col-sm-6" align="center">
+            	<h2>Login</h2> 
+            	Ainda não está registrato? <a href="/projects/new">Clique aqui</a> e registre o seu projeto!
+            </div>
+{%endblock conteudo %}

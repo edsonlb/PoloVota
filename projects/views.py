@@ -1,20 +1,21 @@
 # This Python file uses the following encoding: utf-8
-from projects.forms import ProjetoForm
+from projects.forms import ProjectForm
 from django.http import HttpResponseRedirect, HttpResponse 
-from projects.models import Projeto
+from projects.models import Project
 from django.shortcuts import render, get_object_or_404
 
-def listar(request):
-    project = Projeto.objects.all().order_by('first_name')
-    return render(request, 'list.html', {'project': project})
 
-def new(request):
-    return render(request, 'list.html', {'form': ProjetoForm()})
+def listar(request):
+    projects = Project.objects.all().order_by('tema')
+    return render(request, 'listProject.html', {'projects': projects})
+
+def novo(request):
+    return render(request, 'formProject.html', {'form': ProjectForm()})
 
 def create(request):
     form = ProjetoForm(request.POST)
     if not form.is_valid():
-        return render(request, 'list.html', {'form': ProjetoForm()})
+        return render(request, 'listProject.html', {'form': ProjetoForm()})
 
     obj = form.save()
     return HttpResponseRedirect('/projects/%d/' % obj.pk)

@@ -6,7 +6,7 @@ from persons.forms import AvaliadorForm
 
 def listar(request):
     persons = Person.objects.all().order_by('first_name')
-    return render(request, 'list.html', {'persons': persons})
+    return render(request, 'listPerson.html', {'persons': persons})
 
 def adicionar(request):
     if request.method == 'POST':

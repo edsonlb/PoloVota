@@ -5,7 +5,6 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Person(AbstractUser):
-    #user = models.OneToOneField('auth.User')
     # username
     # first_name
     # last_name

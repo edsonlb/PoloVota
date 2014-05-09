@@ -5,6 +5,7 @@ from django.contrib import admin
 urlpatterns = patterns('',
 	#url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'core.views.index'),
+    url(r'^login/$', 'core.views.login'),
     url(r'^projects/', include('projects.urls')),
     url(r'^persons/', include('persons.urls')),
 )
