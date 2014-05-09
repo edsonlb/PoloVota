@@ -32,7 +32,6 @@ def editar(request, pk=None):
 def salvar(request, person=None):
     if person:
         form = AvaliadorForm(request.POST, instance=person)
-
     else:
         form = AvaliadorForm(request.POST)
 
