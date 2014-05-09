@@ -1,65 +1,37 @@
 {% extends 'template.html' %}
 
-{% block titulo %}Detalhe do Projeto{% endblock titulo %}
+{% block titulo %}Cadastro do Projeto{% endblock titulo %}
 
 {% block conteudo %}
+<form class="form-horizontal" action="/persons/save/" method="POST" role="form">
+    {% csrf_token %}
 
-<form class="form-horizontal" action="." method="POST" role="form">
-		{% csrf_token %}
-	
-		<div class="col-sm-10">            
-			{{ form.tema }}
-			{{ form.tema.errors }}
-        </div>
-	
-		<div class="col-sm-10">
-           {{ form.projeto }}
-			{{ form.projeto.errors }}
-        </div>
+    <div class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Erro!</strong> Verifique os erros antes de salvar!
+    <br />
+    {{ form.errors }}
+    </div>
 
-		<div class="col-sm-10">
-           {{ form.nomeOrientador }}
-		   {{ form.nomeOrientador.errors }}
+    <input name="{{ form.username.name }}"  value="{{ form.first_name.value }}franca" type="hidden" >
+    <input name="id"  value="{{ form.initial.id }}" type="hidden" >
+
+    <div class="form-group">
+        <label for="{{ form.area.id_for_label }}" class="col-sm-2 control-label">Empresa onde Trabalha</label>
+        <div class="col-sm-10">
+            <input id="{{ form.area.id_for_label }}" name="{{ form.area.name }}"  value="{{ form.area.value }}"  placeholder="Médico ou ..." type="text" class="form-control">
         </div>
-			
-		<div class="col-sm-10">
-            {{ form.nomeIntegrante }}
-			{{ form.nomeIntegrante.errors }}
-        </div>
-		
-		<div class="col-sm-10">
-            {{ form.redeSocial }}
-			{{ form.redeSocial.errors }}
-        </div>
-		
-		<div class="col-sm-10">
-            {{ form.modelagem }}
-			{{ form.modelagem.errors }}
-        </div>
-		
-		<div class="col-sm-10">
-        	{{ form.nomeLider }}
-			{{ form.nomeLider.errors }}
-        </div>
-		
-		<div class="col-sm-10">
-            {{ form.emailLider }}
-			{{ form.emailLider.errors }}
-        </div>
-		
-		<div class="col-sm-10">
-           	{{ form.telefoneLider }}
-			{{ form.telefoneLider.errors }}
-        </div>
-		
-		<div class="col-sm-10">
-            {{ form.cpfLider }}
-			{{ form.cpfLider.errors }}
-        </div>
-		
-	
-	 <div align="center">
-        <button type="submit" class="btn btn-success">Salvar Registro</button>
+    </div>
+
+
+
+    <hr>
+
+    <div align="center">
+        <button type="submit" class="btn btn-success">Salvar Projeto</button>
+        {% if pessoa.pk > 0 %}
+        <a class="btn btn-danger" href="/pessoas/excluir/{{ pessoa.pk }}/">Excluir</a>
+        {% endif %}
     </div>
 </form>
-{%endblock conteudo %}
+{% endblock conteudo %}
