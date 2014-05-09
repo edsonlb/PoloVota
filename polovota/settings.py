@@ -5,8 +5,12 @@ Arquivo Settings.py Padrao
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import unipath
+import dj_database_url
 from settings_secret import *
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+#BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = unipath.Path(__file__).parent
 
 #User = Person
 AUTH_USER_MODEL = 'persons.Person'
@@ -22,7 +26,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com']
 
 # Application definition
 
@@ -54,11 +58,16 @@ WSGI_APPLICATION = 'polovota.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///'+BASE_DIR.child('db.sqlite3'))
 }
 
 # Internationalization
@@ -66,7 +75,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'pt-BR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -77,5 +86,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-
+STATIC_ROOT = BASE_DIR.child('staticfiles')
 STATIC_URL = '/static/'
