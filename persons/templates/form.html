@@ -3,6 +3,11 @@
 {% block titulo %}Avaliador{% endblock titulo %}
 
 {% block conteudo %}
+<<<<<<< HEAD
+<form class="form-horizontal" action="/persons/save/" method="POST" role="form">
+{% csrf_token %}
+
+=======
 <form class="form-horizontal" action="." method="POST" role="form">
     {% csrf_token %}
 
@@ -16,12 +21,20 @@
 
     <input name="id"  value="{{ form.initial.id }}" type="hidden" >
 
+>>>>>>> c35c84c0dd608f70f8f7c388c90d0d075bc3ee9f
     <div class="form-group">
         <label for="{{ form.empresa.id_for_label }}" class="col-sm-2 control-label">Empresa onde Trabalha</label>
         <div class="col-sm-10">
             <input id="{{ form.empresa.id_for_label }}" name="{{ form.empresa.name }}"  value="{{ form.empresa.value }}"  placeholder="Último nome..." type="text" class="form-control">
         </div>
     </div>
+<<<<<<< HEAD
+
+    <div class="form-group">
+        <label for="{{ form.first_name.id_for_label }}" class="col-sm-2 control-label">Nome</label>
+        <div class="col-sm-10">
+            <input id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}"  value="{{ form.first_name.value }}"  placeholder="Primeiro Nome..." type="text" class="form-control">
+=======
 
     <div class="form-group">
         <label for="{{ form.first_name.id_for_label }}" class="col-sm-2 control-label">Nome</label>
@@ -34,10 +47,25 @@
         <label for="{{ form.last_name.id_for_label }}" class="col-sm-2 control-label">Sobrenome</label>
         <div class="col-sm-10">
             <input id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}"  value="{{ form.last_name.value }}"  placeholder="Último nome..." type="text" class="form-control">
+>>>>>>> c35c84c0dd608f70f8f7c388c90d0d075bc3ee9f
         </div>
     </div>
 
     <div class="form-group">
+<<<<<<< HEAD
+        <label for="{{ form.last_name.id_for_label }}" class="col-sm-2 control-label">Sobrenome</label>
+        <div class="col-sm-10">
+            <input id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}"  value="{{ form.last_name.value }}"  placeholder="Último nome..." type="text" class="form-control">
+=======
+        <label for="{{ form.email.id_for_label }}" class="col-sm-2 control-label">E-Mail</label>
+        <div class="col-sm-10">
+            <input id="{{ form.email.id_for_label }}" name="{{ form.email.name }}"  value="{{ form.email.value }}"  placeholder="Último nome..." type="email" class="form-control">
+>>>>>>> c35c84c0dd608f70f8f7c388c90d0d075bc3ee9f
+        </div>
+    </div>
+
+    <div class="form-group">
+<<<<<<< HEAD
         <label for="{{ form.email.id_for_label }}" class="col-sm-2 control-label">E-Mail</label>
         <div class="col-sm-10">
             <input id="{{ form.email.id_for_label }}" name="{{ form.email.name }}"  value="{{ form.email.value }}"  placeholder="Último nome..." type="email" class="form-control">
@@ -45,6 +73,8 @@
     </div>
 
     <div class="form-group">
+=======
+>>>>>>> c35c84c0dd608f70f8f7c388c90d0d075bc3ee9f
         <label for="{{ form.password.id_for_label }}" class="col-sm-2 control-label">Senha</label>
         <div class="col-sm-10">
             <input id="{{ form.password.id_for_label }}" name="{{ form.password.name }}"  value="{{ form.password.value }}"  placeholder="Senha..." type="password" class="form-control">

@@ -4,18 +4,15 @@ from django.db.models import Q
 from persons.models import Person
 from persons.forms import AvaliadorForm
 
-
 def listar(request):
     persons = Person.objects.all().order_by('first_name')
     return render(request, 'list.html', {'persons': persons})
-
 
 def adicionar(request):
     if request.method == 'POST':
         return salvar(request)
 
     return render(request, 'form.html', {'form': AvaliadorForm()})
-
 
 def editar(request, pk=None):
     try:

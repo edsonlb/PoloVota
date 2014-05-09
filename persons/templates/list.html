@@ -20,6 +20,26 @@
 </div>
 <hr>
 <div class="table-responsive">
+<<<<<<< HEAD
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Empresa</th>
+            <th>E-Mail</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for person in persons %}
+          <tr>
+            <td><a href="/persons/edit/{{ person.pk }}/">{{ person.first_name }}</a></td>
+            <td>{{ person.empresa }}</td>
+            <td>{{ person.email }}</td>
+          </tr>
+        {% endfor %}  
+        </tbody>
+      </table>
+=======
   <table class="table table-striped">
     <thead>
       <tr>
@@ -40,6 +60,7 @@
       {% endfor %}
     </tbody>
   </table>
+>>>>>>> c35c84c0dd608f70f8f7c388c90d0d075bc3ee9f
 </div><!-- FIM TABELA -->
 
 {% endblock conteudo %}
