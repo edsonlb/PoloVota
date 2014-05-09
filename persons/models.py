@@ -1,3 +1,4 @@
+#coding: utf-8
 from django.db import models
 from django.contrib.auth.models import AbstractUser, User
 from django.utils.translation import ugettext_lazy as _
@@ -16,7 +17,7 @@ class Person(AbstractUser):
     # last_login
     # date_joined
     empresa = models.CharField(
-        _('Empresa'), db_index=True, max_length='200', blank=False, null=False)
+        _('empresa'), db_index=True, max_length='200', blank=False, null=False)
 
     class Meta:
         ordering = ['first_name']
