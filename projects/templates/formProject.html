@@ -3,7 +3,7 @@
 {% block titulo %}Cadastro do Projeto{% endblock titulo %}
 
 {% block conteudo %}
-<form class="form-horizontal" action="/persons/save/" method="POST" role="form">
+<form class="form-horizontal" action="/projects/save/" method="POST" role="form">
     {% csrf_token %}
 
     <div class="alert alert-danger alert-dismissable">
@@ -13,22 +13,149 @@
     {{ form.errors }}
     </div>
 
+    <h3>Informações Básicas <small>Seja claro e direto nas considerações.</small></h3>
+
     <input name="{{ form.username.name }}"  value="{{ form.first_name.value }}franca" type="hidden" >
     <input name="id"  value="{{ form.initial.id }}" type="hidden" >
 
     <div class="form-group">
-        <label for="{{ form.area.id_for_label }}" class="col-sm-2 control-label">Empresa onde Trabalha</label>
+        <label for="{{ form.area.id_for_label }}" class="col-sm-2 control-label">Área</label>
         <div class="col-sm-10">
-            <input id="{{ form.area.id_for_label }}" name="{{ form.area.name }}"  value="{{ form.area.value }}"  placeholder="Médico ou ..." type="text" class="form-control">
+            <input id="{{ form.area.id_for_label }}" name="{{ form.area.name }}"  value="{{ form.area.value }}"  placeholder="Ex: SEGURANÇA" type="text" class="form-control">
+            <p class="help-block">Informe a PRINCIPAL área de atuação do seu projeto. (1 - Uma)</p>
         </div>
     </div>
 
+    <div class="form-group">
+        <label for="{{ form.tema.id_for_label }}" class="col-sm-2 control-label">Tema</label>
+        <div class="col-sm-10">
+            <input id="{{ form.tema.id_for_label }}" name="{{ form.tema.name }}"  value="{{ form.tema.value }}"  placeholder="Ex: Sistema de apoio à configuração de Firewalls em Linux." type="text" class="form-control">
+            <p class="help-block">Informe o título do seu projeto.</p>
+        </div>
+    </div>
 
+    <div class="form-group">
+        <label for="{{ form.descricao.id_for_label }}" class="col-sm-2 control-label">Descrição</label>
+        <div class="col-sm-10">
+            <textarea onkeydown=contador(event) onkeyup=contador(event) name=texto rows="3" id="{{ form.descricao.id_for_label }}" name="{{ form.descricao.name }}"  value="{{ form.descricao.value }}"  placeholder="Ex: A proposta do presente trabalho é elaborar um aplicativo utilitário que informe sobre os perigos que uma rede está sujeita e ações que podem ser executadas para prover segurança em quatro camadas em servidores Linux, através da utilização de várias técnicas e tecnologias empregadas no estudo, dando maior ênfase aos aspectos tecnológicos que envolvem a segurança de redes em ambientes cooperativos." type="text" class="form-control"></textarea>
+            <p class="help-block">Descreva brevemente o seu projeto em até 400 caracteres. <input value=0 name="caracteres" id="caracteres"> caracteres usados até o momento.</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.universidade.id_for_label }}" class="col-sm-2 control-label">Universidade</label>
+        <div class="col-sm-10">
+            <input id="{{ form.universidade.id_for_label }}" name="{{ form.universidade.name }}"  value="{{ form.universidade.value }}"  placeholder="Ex: Universidade de Franca" type="text" class="form-control">
+            <p class="help-block">Informe o nome da sua Universidade sem abreviações.</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.universidadeOrientador.id_for_label }}" class="col-sm-2 control-label">Orientador</label>
+        <div class="col-sm-10">
+            <input id="{{ form.universidadeOrientador.id_for_label }}" name="{{ form.universidadeOrientador.name }}"  value="{{ form.universidadeOrientador.value }}" type="text" class="form-control">
+            <p class="help-block">Informe o nome completo do seu Orientador de estudos acadêmicos.</p>
+        </div>
+    </div>
+
+    <hr>
+    <h3>Responsável <small>Em caso de grupos, nomeie um membro líder.</small></h3>
+
+    <div class="form-group">
+        <label for="{{ form.liderNome.id_for_label }}" class="col-sm-2 control-label">Nome do Líder</label>
+        <div class="col-sm-10">
+            <input id="{{ form.liderNome.id_for_label }}" name="{{ form.liderNome.name }}"  value="{{ form.liderNome.value }}" type="text" class="form-control" placeholder="seu nome completo">
+            <p class="help-block">Informe o nome completo do líder do projeto.</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.liderTelefone.id_for_label }}" class="col-sm-2 control-label">Telefone</label>
+        <div class="col-sm-10">
+            <input id="{{ form.liderTelefone.id_for_label }}" name="{{ form.liderTelefone.name }}"  value="{{ form.liderTelefone.value }}"  placeholder="Ex: (16) 99202-7464" data-mask="(99) 99999-9999"  type="text" class="form-control">
+            <p class="help-block">Telefone celular de contato (Líder).</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.liderEmail.id_for_label }}" class="col-sm-2 control-label">E-Mail</label>
+        <div class="col-sm-10">
+            <input id="{{ form.liderEmail.id_for_label }}" name="{{ form.liderEmail.name }}"  value="{{ form.liderEmail.value }}"  placeholder="Ex: seunome@dominio.com"  type="email" class="form-control">
+            <p class="help-block">E-mail válido para registro (Login do Líder).</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.liderSocial.id_for_label }}" class="col-sm-2 control-label">Social</label>
+        <div class="col-sm-10">
+            <input id="{{ form.liderSocial.id_for_label }}" name="{{ form.liderSocial.name }}"  value="{{ form.liderSocial.value }}"  placeholder="Ex: seunome@dominio.com"  type="text" class="form-control">
+            <p class="help-block">Link para rede social. (Facebook, Linkedin, Google Plus & etc...) (Líder)</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.liderIntegrantes.id_for_label }}" class="col-sm-2 control-label">Integrantes</label>
+        <div class="col-sm-10">
+            <input id="{{ form.liderIntegrantes.id_for_label }}" name="{{ form.liderIntegrantes.name }}"  value="{{ form.liderIntegrantes.value }}"  placeholder="Ex: Pedro Paulo Silva, Arnaldo Antunes Silva"  type="text" class="form-control">
+            <p class="help-block">Informe o nome completo dos integrantes do projeto separados por vírgula.</p>
+        </div>
+    </div>
+
+    <hr>
+    <h3>Projeto <small>Fique atento aos prazos de entrega.</small></h3>
+
+    <div class="form-group">
+        <label for="{{ form.link_slides.id_for_label }}" class="col-sm-2 control-label">Slide de Apresentação</label>
+        <div class="col-sm-10">
+            <input id="{{ form.link_slides.id_for_label }}" name="{{ form.link_slides.name }}"  value="{{ form.link_slides.value }}"  placeholder="Ex: http://www.slideshare.net/cuchullainn/jedi-productivity"  type="text" class="form-control">
+            <p class="help-block">Slides de apresentação do projeto. 5 slides para uma apresentação de até 15min. Links do <a href="http://pt.slideshare.net/" target="_blank">Slideshare</a> ou <a href="https://docs.google.com" target="_blank">Google Docs</a></p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.link_monografia.id_for_label }}" class="col-sm-2 control-label">Monografia/Artigo</label>
+        <div class="col-sm-10">
+            <input id="{{ form.link_monografia.id_for_label }}" name="{{ form.link_monografia.name }}"  value="{{ form.link_monografia.value }}"  placeholder="Ex: https://docs.google.com/document/d/1XLwJnuuHjRXjx-opO5bWTTXu6ytjfj6dyxl8SRYHKX8/preview"  type="text" class="form-control">
+            <p class="help-block">Estudo acadêmico do projeto. Informar o link do PDF ou link do <a href="https://docs.google.com" target="_blank">Google Docs</a></p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.link_modelagem.id_for_label }}" class="col-sm-2 control-label">Modelagem do Sistema</label>
+        <div class="col-sm-10">
+            <input id="{{ form.link_modelagem.id_for_label }}" name="{{ form.link_modelagem.name }}"  value="{{ form.link_modelagem.value }}"  placeholder="Ex: https://docs.google.com/document/d/1XLwJnuuHjRXjx-opO5bWTTXu6ytjfj6dyxl8SRYHKX8/preview"  type="text" class="form-control">
+            <p class="help-block">Link para visualizar as modelagens do sistema. Ex: Diagramas, Fluxogramas & Casos de Uso.</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.link_website.id_for_label }}" class="col-sm-2 control-label">Website</label>
+        <div class="col-sm-10">
+            <input id="{{ form.link_website.id_for_label }}" name="{{ form.link_website.name }}"  value="{{ form.link_website.value }}"  placeholder="Ex: http://meu_projeto.herokuapp.com"  type="text" class="form-control">
+            <p class="help-block">Se o aplicativo for Web, informar o endereço, caso contrário o endereço onde possa ser feito o download do mesmo (se disponível). (Ex: <a href="https://play.google.com/store" target="_blank">Google Play</a>, <a href="https://drive.google.com" target="_blank">Google Drive</a>, <a href="http://www.4shared.com/" target="_blank">4Shared</a> e etc...)</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.link_outros.id_for_label }}" class="col-sm-2 control-label">Link Adicional</label>
+        <div class="col-sm-10">
+            <input id="{{ form.link_outros.id_for_label }}" name="{{ form.link_outros.name }}"  value="{{ form.link_outros.value }}"  placeholder="Ex: https://www.facebook.com/appcenter/picmonkey"  type="text" class="form-control">
+            <p class="help-block">Campo adicional para você colocar algum link de sua preferência para servir de apoio ao seu projeto. Ex: Link do App no Facebook</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.link_versionamento.id_for_label }}" class="col-sm-2 control-label">Versionamento</label>
+        <div class="col-sm-10">
+            <input id="{{ form.link_versionamento.id_for_label }}" name="{{ form.link_versionamento.name }}"  value="{{ form.link_versionamento.value }}"  placeholder="Ex: https://github.com/edsonlb/PoloVota"  type="text" class="form-control">
+            <p class="help-block">Caso possua, informe o link do repositório de códigos. Ex: <a href="https://github.com" target="_blank">GitHub</a>, <a href="https://bitbucket.org/" target="_blank">Bitbucket</a>, <a href="https://code.google.com/" target="_blank">Google Code</a> & etc...</p>
+        </div>
+    </div>
 
     <hr>
 
     <div align="center">
-        <button type="submit" class="btn btn-success">Salvar Projeto</button>
+        <button type="submit" class="btn btn-success">Gravar</button>
         {% if pessoa.pk > 0 %}
         <a class="btn btn-danger" href="/pessoas/excluir/{{ pessoa.pk }}/">Excluir</a>
         {% endif %}

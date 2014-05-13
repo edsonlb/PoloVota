@@ -10,12 +10,30 @@ def listar(request):
     return render(request, 'listProject.html', {'projects': projects})
 
 def novo(request):
-    return render(request, 'formProject.html', {'form': ProjectForm()})
+    form = ProjectForm()
+    form.full_clean()
+    return render(request, 'formProject.html', {'form': form})
 
-def create(request):
+def salvar(request):
+    if request.method == 'POST':
+        form = ProjetoForm(request.POST)
+        
+        if form.is_valid():
+            project = Project(**form.cleaned_data)
+            project.save()
+            return HttpResponseRedirect('/projects/new/')
+        else:
+            return render(request, 'formPessoaJuridica.html', {'form': form})    
+    else:
+        return render(request, 'formPessoaFisica.html', {'form': PessoaFisicaForm()})
+
+
+
+
+
     form = ProjetoForm(request.POST)
     if not form.is_valid():
-        return render(request, 'listProject.html', {'form': ProjetoForm()})
+        return render(request, 'formProject.html', {'form': ProjetoForm()})
 
     obj = form.save()
     return HttpResponseRedirect('/projects/%d/' % obj.pk)

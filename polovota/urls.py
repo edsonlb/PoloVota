@@ -6,6 +6,8 @@ urlpatterns = patterns('',
 	#url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'core.views.index'),
     url(r'^login/$', 'core.views.login'),
+    url(r'^email/$', 'core.views.email_validation'),
+    url(r'^validation/(?P<numero>\d+)/$', 'core.views.validation'),
     url(r'^projects/', include('projects.urls')),
     url(r'^persons/', include('persons.urls')),
 )
