@@ -2,12 +2,14 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.conf import settings
+from projects.forms import LoginForm
 
 def index(request):
     return render(request, 'index.html')
 
 def login(request):
-    return render(request, 'login.html')
+    form = LoginForm()
+    return render(request, 'login.html', {'form':form})
 
 def save(request):
     return render(request, 'save.html')

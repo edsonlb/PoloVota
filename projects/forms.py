@@ -6,8 +6,8 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
 
-class ContactForm1(forms.Form):
-    liderNome = forms.CharField(max_length=200, null=False, blank=False)
-    liderTelefone = forms.CharField(max_length=20, null=False, blank=False)
-    liderEmail = forms.EmailField(null=False, blank=False) 
+class LoginForm(forms.Form):
+    liderNome = forms.CharField(max_length='200', required=True)
+    liderTelefone = forms.CharField(max_length='20', required=True)
+    liderEmail = forms.EmailField(required=True) 
 

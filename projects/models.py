@@ -36,3 +36,18 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.tema +' - '+ self.liderNome
+
+    def save(self, force_insert=False, force_update=False):
+        self.area = self.area.upper()
+        self.tema = self.tema.upper()
+        self.descricao = self.descricao.upper()
+        self.universidade = self.universidade.upper()
+        self.universidadeOrientador = self.universidadeOrientador.upper()
+        self.liderNome = self.liderNome.upper()
+        self.liderEmail = self.liderEmail.upper()
+        self.liderIntegrantes = self.liderIntegrantes.upper()
+        self.etapa = self.etapa.upper()
+        self.tags = self.tags.upper()
+        self.ativo = self.ativo.upper()
+
+        super(Project, self).save(force_insert, force_update)

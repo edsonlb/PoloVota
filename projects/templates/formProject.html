@@ -21,8 +21,7 @@
 
     <h3>Informações Básicas <small>Seja claro e direto nas considerações.</small></h3>
 
-    <input name="{{ form.username.name }}"  value="{{ form.first_name.value }}franca" type="hidden" >
-    <input name="id"  value="{{ form.initial.id|default:'0' }}" type="hidden" >
+    <input name="id"  value="{{ form.initial.id|default:'' }}" type="hidden" >
     <input name="{{ form.ativo.name }}"  value="{{ form.ativo.value|default:'VAL' }}" type="hidden" >
 
     <div class="form-group">
@@ -169,4 +168,10 @@
     </div>
     {% endif %}
 </form>
+<font size="1" color="gray">
+Data de Alteração: {{ form.instance.dataAlteracao|date:"d/m/Y  H:m:s" }}
+<br />
+Data de Cadastro: {{ form.instance.dataCadastro|date:"d/m/Y  H:m:s" }}
+</font>
+
 {% endblock conteudo %}

@@ -9,15 +9,17 @@
             <div class="col-sm-6" align="center">
             	<h2>Login</h2> 
 
-				<form class="form-horizontal" action="/projects/login/" method="POST" role="form">{% csrf_token %}
-
-				{% if form.errors %}
-				<div class="alert alert-danger alert-dismissable">
-  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-  				<strong>Erro!</strong> <br />
-   				{{ form.errors.as_text }}
-				</div>
-				{% endif %}
+	<form class="form-horizontal" action="/projects/login/" method="POST" role="form">{% csrf_token %}
+		
+		{% if form.errors or msg %}
+			<div class="alert alert-danger alert-dismissable">
+  			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  			<strong>Erro!</strong> <br />
+   			{{ msg }} <br />
+   			{{ form.errors.as_text }}
+   			
+			</div>
+		{% endif %}
 
     <div class="form-group">
         <label for="{{ form.liderNome.id_for_label }}" class="col-sm-2 control-label">Nome </label>

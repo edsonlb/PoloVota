@@ -1,5 +1,5 @@
 # This Python file uses the following encoding: utf-8
-from projects.forms import ProjectForm
+from projects.forms import ProjectForm, LoginForm
 from django.http import HttpResponseRedirect, HttpResponse 
 from projects.models import Project
 from django.shortcuts import render, get_object_or_404
@@ -7,19 +7,24 @@ from core.views import email_enviar
 from django.conf import settings
 from django.db.models import Q
 
-def login(request):
-    liderNome = request.POST.get('liderNome','0')
-    liderTelefone = request.POST.get('liderTelefone','0')
-    liderEmail = request.POST.get('liderEmail','0')
 
-    try:
-        project = Project.objects.get(liderNome=liderNome, liderTelefone=liderTelefone, liderEmail=liderEmail )
-    except: 
-        colocar aqui um redirecionamento para uma tela de erro
-        
-    form = ProjectForm() colocar aqui a criação do form para ele poder editar e salvar
-    form.full_clean()
-    return render(request, 'formProject.html', {'form': form})
+def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+
+        if form.is_valid(): 
+            try:
+                project = Project.objects.filter(liderNome=form.data['liderNome'].upper(), liderTelefone=form.data['liderTelefone'], liderEmail=form.data['liderEmail'].upper(), ativo='SIM')[0]
+                formulario = ProjectForm(instance=project)
+            except: 
+                return render(request, 'login.html', {'form': form, 'msg':'Projeto não encontrado. Revise as suas informações.'})
+
+            return render(request, 'formProject.html', {'form': formulario})
+        else:
+            return render(request, 'login.html', {'form': form, 'msg':'Os dados não são válidos. Revise os campos.'})    
+    else:
+        form = LoginForm()
+        return render(request, 'login.html', {'form': form, 'msg':'Erro de login.'}) 
 
 def listar(request):
     projects = Project.objects.all().order_by('tema')
@@ -30,7 +35,6 @@ def prazos(request):
 
 def novo(request):
     form = ProjectForm()
-    form.full_clean()
     return render(request, 'formProject.html', {'form': form})
 
 def pesquisar(request):
