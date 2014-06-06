@@ -24,8 +24,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-#HOST_WWW = 'http://polovota.herokuapp.com/'
-HOST_WWW = 'http://127.0.0.1:8000/'
+HOST_WWW = 'http://polovota.herokuapp.com/'
+#HOST_WWW = 'http://127.0.0.1:8000/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRET_KEY_SETTINGS
