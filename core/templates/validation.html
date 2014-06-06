@@ -1,0 +1,16 @@
+{% extends 'template.html' %}
+
+{% block titulo %}E-Mail Validado!{% endblock titulo %}
+
+{% block conteudo %}
+	<div class="col-sm-6" align="center">
+    	<img class="img-responsive" src="{{ STATIC_URL }}/logo/logo_G.png">
+    </div>
+    
+    <div class="col-sm-6" align="center">
+    	<h2>Registro válido!</h2>
+        Você já pode fazer o <a href="/login/">login<a> no sistema para editar o seu projeto. Fique atento aos <a href="/projects/prazos/">prazos de entrega<a>, ok!<br />
+        Boa sorte!
+    </div>
+		
+{%endblock conteudo %}

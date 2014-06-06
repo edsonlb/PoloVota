@@ -15,8 +15,17 @@ BASE_DIR = unipath.Path(__file__).parent
 #User = Person
 AUTH_USER_MODEL = 'persons.Person'
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
+#Email Configuration
+EMAIL_HOST = SECRET_EMAIL_HOST
+EMAIL_HOST_USER = SECRET_EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = SECRET_EMAIL_HOST_PASSWORD
+DEFAULT_FROM_EMAIL = SECRET_DEFAULT_FROM_EMAIL
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+#HOST_WWW = 'http://polovota.herokuapp.com/'
+HOST_WWW = 'http://127.0.0.1:8000/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRET_KEY_SETTINGS

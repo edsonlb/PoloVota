@@ -1,0 +1,15 @@
+{% extends 'template.html' %}
+
+{% block titulo %}E-Mail Validado!{% endblock titulo %}
+
+{% block conteudo %}
+	<div class="col-sm-6" align="center">
+    	<img class="img-responsive" src="{{ STATIC_URL }}/logo/logo_G.png">
+    </div>
+    
+    <div class="col-sm-6" align="center">
+    	<h2>ERRO!</h2>
+        Houve um erro ou você já validou o seu registro!
+    </div>
+		
+{%endblock conteudo %}

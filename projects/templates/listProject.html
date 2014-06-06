@@ -8,7 +8,7 @@
     <div class="form-group">
       <div class="row">
         <div class="col-md-10">
-          <input type="text" class="form-control" id="textoBusca" name="textoBusca" value="{{ textoBusca }}" placeholder="Digite um texto para a busca...">
+          <input type="text" class="form-control" id="textoBusca" name="textoBusca" value="{{ textoBusca }}" placeholder="Digite um texto para a busca ou TUDO para listar todos os registros...">
         </div>
         <div class="col-md-2" align="center">
           <button type="submit" class="btn btn-primary">Pesquisar <span class="glyphicon glyphicon-search"></span></button>
@@ -23,25 +23,19 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Área</th>
-        <th>Universidade</th>
         <th>Projeto</th>
         <th>Aluno</th>
-        <th>Etapa</th>
-        <th>Votos</th>
-        <th>Ações</th>
+        <th>Área</th>
+        <th>Universidade</th>
       </tr>
     </thead>
     <tbody>
       {% for project in projects %}
       <tr>
-        <td><a href="/projects/edit/{{ project.pk }}/">{{ project.area }}</a></td>
-        <td>{{ project.universidade }}</td>
-        <td>{{ project.tema }}</td>
+        <td><a href="/projects/view/{{ project.pk }}/">{{ project.tema }}</a> <span class="badge">+22</span> <span class="badge">-2</span></td>
         <td>{{ project.liderNome }}</td>
-        <td>{{ project.etapa }}</td>
-        <td>Média + <span class="badge">{{ project.votos }}</span></td>
-        <td>+</td>
+        <td>{{ project.area }}</td>
+        <td>{{ project.universidade }}</td>  
       </tr>
       {% endfor %}
     </tbody>

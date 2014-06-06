@@ -8,7 +8,48 @@
             </div>
             <div class="col-sm-6" align="center">
             	<h2>Login</h2> 
-            	Ainda não está registrato? <a href="/projects/new">Clique aqui</a> e registre o seu projeto!<br />
-            	<a href="/projects/new">(PROJETO LINK PROVISORIO)</a>
-            </div>
+
+				<form class="form-horizontal" action="/projects/login/" method="POST" role="form">{% csrf_token %}
+
+				{% if form.errors %}
+				<div class="alert alert-danger alert-dismissable">
+  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  				<strong>Erro!</strong> <br />
+   				{{ form.errors.as_text }}
+				</div>
+				{% endif %}
+
+    <div class="form-group">
+        <label for="{{ form.liderNome.id_for_label }}" class="col-sm-2 control-label">Nome </label>
+        <div class="col-sm-10">
+            <input id="{{ form.liderNome.id_for_label }}" name="{{ form.liderNome.name }}"  value="{{ form.liderNome.value|default_if_none:'' }}" type="text" class="form-control" placeholder="Nome do líder completo">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="{{ form.liderTelefone.id_for_label }}" class="col-sm-2 control-label">Telefone </label>
+        <div class="col-sm-10">
+            <input id="{{ form.liderTelefone.id_for_label }}" name="{{ form.liderTelefone.name }}"  value="{{ form.liderTelefone.value|default_if_none:'' }}"  placeholder="(16) 99202-7464" data-mask="(99) 99999-9999"  type="text" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.liderEmail.id_for_label }}" class="col-sm-2 control-label">E-Mail </label>
+        <div class="col-sm-10">
+            <input id="{{ form.liderEmail.id_for_label }}" name="{{ form.liderEmail.name }}"  value="{{ form.liderEmail.value|default_if_none:'' }}"  placeholder="seunome@dominio.com"  type="email" class="form-control">
+        </div>
+    </div>
+
+    <div align="center">
+        <button type="submit" class="btn btn-success">Logar</button>
+    </div>
+
+    </form>
+
+    <hr>
+    Ainda não está registrato?<br />
+    <div align="center">
+    	<a href="/projects/new" class="btn btn-primary" role="button">Registrar novo projeto</a>
+     
+    </div>
+</div>
 {%endblock conteudo %}

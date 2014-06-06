@@ -1,0 +1,45 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Informações e Prazos{% endblock titulo %}
+
+{% block conteudo %}
+	<div class="col-sm-6" align="center">
+    	<img class="img-responsive" src="{{ STATIC_URL }}/logo/logo_G.png">
+    </div>
+    
+    <div class="col-sm-6">
+
+    <div class="alert alert-info alert-dismissable">
+		<strong>(Primeira Seleção) Cadastro de Projetos: 01/01/2001</strong> 
+	</div>
+    <ul>
+  		<li>Área</li>
+  		<li>Tema</li>
+  		<li>Descrição</li>
+  		<li>Universidade</li>
+  		<li>Orientador</li>
+  		<li>Nome do Líder</li>
+  		<li>Telefone de Contato</li>
+  		<li>E-Mail</li>
+  		<li>Integrantes</li>
+	</ul>
+
+    <div class="alert alert-info alert-dismissable">
+		<strong>(Segunda Seleção) Cadastro da Documentação: 02/02/2002</strong> 
+	</div>
+    <ul>
+  		<li>Monografia/Artigo</li>
+  		<li>Modelagem do Sistema</li>
+	</ul>
+
+    <div class="alert alert-info alert-dismissable">
+		<strong>(Terceira Seleção) Cadastro de Informações Adicionais: 03/03/2003</strong> 
+	</div>
+    <ul>
+  		<li>Slide de Apresentação</li>
+  		<li>Website do Protótipo Funcional</li>
+	</ul>
+
+    </div>
+		
+{%endblock conteudo %}

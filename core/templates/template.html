@@ -42,8 +42,6 @@
     </nav>
 
     <!-- FIM MENU -->
-    <br />
-    <hr>
       <div class="container">
       <!-- CONTEUDO -->
         {% block conteudo %}{% endblock conteudo %}
@@ -60,15 +58,22 @@
     <!-- JavaScript -->
     <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}bootstrap/js/tooltip.js"></script>
     <script src="{{ STATIC_URL }}js/jasny-bootstrap.min.js"></script>
     <!-- FIM JavaScript -->
 
    <script type="text/javascript">
+
+    $(function () {
+        $("[rel='tooltip']").tooltip();
+    });
+
+
     function contador(evt){
     //tratamento event p/ diversos browsers
     evt = evt || window.event;
     var targ = evt.target || evt.srcElement;
-    if (targ.nodeType == 3) // defeat Safari bug
+    if (targ.nodeType == 3) // bug safari
     targ = targ.parentNode
     //##end event
              
