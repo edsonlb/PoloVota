@@ -3,4 +3,4 @@
 *.sqlite3
 
 # Get our settings_secret.py file on README.md to see the configuration
-settings_secret.py
+#settings_secret.py
