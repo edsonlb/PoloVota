@@ -8,7 +8,7 @@ import sys
 from dj_database_url import parse as db_url
 from decouple import config
 from unipath import Path
-from settings_secret import *
+from settings_secret import * #SEE SETTINGS_SECRET_EXAMPLE.PY (RENAME THE FILE TO: settings_secret.py )
 
 BASE_DIR = Path(__file__).parent
 
