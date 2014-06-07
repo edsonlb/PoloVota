@@ -65,12 +65,12 @@ def salvar(request):
         form = ProjectForm(request.POST)
         
         if form.is_valid():
-            project = Project(**form.cleaned_data)
+            print form.data
+            print form.data['id']
+            form.save()
 
-            project.save()
-
-            if project.ativo == 'VAL':
-                email_enviar(project.liderEmail, 'Valide seu Email', 'Valide seu email: '+settings.HOST_WWW+'projects/validation/'+str(project.pk)+'/')
+            if form.data['ativo'] == 'VAL':
+                email_enviar(project.liderEmail, 'Valide seu Email', 'Valide seu email: '+settings.HOST_WWW+'projects/validation/'+str(form.data['id'])+'/')
                 return HttpResponseRedirect('/email/')
             else:
                 return HttpResponseRedirect('/save/')
