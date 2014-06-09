@@ -62,15 +62,18 @@ def pesquisar(request):
 
 def salvar(request):
     if request.method == 'POST':
-        form = ProjectForm(request.POST)
+
+        try:
+            project = Project.objects.get(id=request.POST.get('id','0'))   
+            form = ProjectForm(request.POST, instance=project)  
+        except:
+            form = ProjectForm(request.POST)
         
         if form.is_valid():
-            print form.data
-            print form.data['id']
-            form.save()
+            project = form.save()
 
-            if form.data['ativo'] == 'VAL':
-                email_enviar(project.liderEmail, 'Valide seu Email', 'Valide seu email: '+settings.HOST_WWW+'projects/validation/'+str(form.data['id'])+'/')
+            if project.ativo == 'VAL':
+                email_enviar(project.liderEmail, 'Valide seu Email', 'Valide seu email: '+settings.HOST_WWW+'projects/validation/'+str(project.pk)+'/')
                 return HttpResponseRedirect('/email/')
             else:
                 return HttpResponseRedirect('/save/')

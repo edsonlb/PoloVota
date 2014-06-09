@@ -84,10 +84,10 @@
     </div>
 
     <div class="form-group">
-        <label for="{{ form.liderEmail.id_for_label }}" class="col-sm-2 control-label">E-Mail <span class="glyphicon glyphicon-info-sign" rel="tooltip" title="Campo usado para efetuar o login no sistema."></span></label>
+        <label for="{{ form.liderEmail.id_for_label }}" class="col-sm-2 control-label">E-Mail <span class="glyphicon glyphicon-info-sign" rel="tooltip" title="Campo usado para efetuar o login no sistema. Use e-mails diferentes para cada projeto cadastrado."></span></label>
         <div class="col-sm-10">
             <input id="{{ form.liderEmail.id_for_label }}" name="{{ form.liderEmail.name }}"  value="{{ form.liderEmail.value|default_if_none:'' }}"  placeholder="Ex: seunome@dominio.com"  type="email" class="form-control">
-            <p class="help-block">E-mail válido para registro (Login do Líder). Campo usado para o Login no sistema.</p>
+            <p class="help-block">E-mail válido para registro (Login do Líder). Campo usado para o Login no sistema.<span class="glyphicon glyphicon-question-sign"  rel="tooltip" title="Caso esteja cadastrando mais de um projeto em seu nome, use e-mails diferentes."></span></p>
         </div>
     </div>
 
