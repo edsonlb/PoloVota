@@ -8,19 +8,21 @@ import sys
 from dj_database_url import parse as db_url
 from decouple import config
 from unipath import Path
-from settings_secret import * #SEE SETTINGS_SECRET_EXAMPLE.PY (RENAME THE FILE TO: settings_secret.py )
+
+if sys.argv[1] == 'runserver':
+    from settings_secret import * #SEE SETTINGS_SECRET_EXAMPLE.PY (RENAME THE FILE TO: settings_secret.py )
 
 BASE_DIR = Path(__file__).parent
 
 AUTH_USER_MODEL = 'persons.Person'
 
-EMAIL_HOST = SECRET_EMAIL_HOST
+EMAIL_HOST = HEROKU_SECRET_EMAIL_HOST
 
-EMAIL_HOST_USER = SECRET_EMAIL_HOST_USER
+EMAIL_HOST_USER = HEROKU_SECRET_EMAIL_HOST_USER
 
-EMAIL_HOST_PASSWORD = SECRET_EMAIL_HOST_PASSWORD
+EMAIL_HOST_PASSWORD = HEROKU_SECRET_EMAIL_HOST_PASSWORD
 
-DEFAULT_FROM_EMAIL = SECRET_DEFAULT_FROM_EMAIL
+DEFAULT_FROM_EMAIL = HEROKU_SECRET_DEFAULT_FROM_EMAIL
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -31,7 +33,7 @@ EMAIL_USE_TLS = True
 HOST_WWW = 'http://polovota.herokuapp.com/'
 #HOST_WWW = 'http://127.0.0.1:8000/'
 
-SECRET_KEY = SECRET_KEY_SETTINGS
+SECRET_KEY = HEROKU_SECRET_KEY_SETTINGS
 
 DEBUG = (sys.argv[1] == 'runserver')
 
