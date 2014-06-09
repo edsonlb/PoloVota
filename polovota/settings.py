@@ -10,7 +10,7 @@ from decouple import config
 from unipath import Path
 
 if sys.argv[1] == 'runserver':
-    # SEE SETTINGS_SECRET_EXAMPLE.PY (RENAME THE FILE TO: settings_secret.py )
+    # SEE SETTINGS_SECRET_EXAMPLE.PY (RENAME THE FILE TO: settings_secret.py ) RUNS LOCALHOST
     from settings_secret import * 
     EMAIL_HOST = SECRET_EMAIL_HOST
     EMAIL_HOST_USER = SECRET_EMAIL_HOST_USER
@@ -18,7 +18,7 @@ if sys.argv[1] == 'runserver':
     DEFAULT_FROM_EMAIL = SECRET_DEFAULT_FROM_EMAIL
     SECRET_KEY = SECRET_KEY_SETTINGS
 else:
-    # READ: https://devcenter.heroku.com/articles/config-vars
+    # READ: https://devcenter.heroku.com/articles/config-vars RUNS REMOTE ON HEROKU
     EMAIL_HOST = os.environ['HEROKU_SECRET_EMAIL_HOST']
     EMAIL_HOST_USER = os.environ['HEROKU_SECRET_EMAIL_HOST_USER']
     EMAIL_HOST_PASSWORD = os.environ['HEROKU_SECRET_EMAIL_HOST_PASSWORD']

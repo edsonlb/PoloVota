@@ -1,9 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-#admin.autodiscover()
+admin.autodiscover()
 
 urlpatterns = patterns('',
-	#url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'core.views.index'),
     url(r'^login/$', 'core.views.login'),
     url(r'^email/$', 'core.views.email'),
@@ -12,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^validation_error/$', 'core.views.validation_error'),
     url(r'^projects/', include('projects.urls')),
     url(r'^persons/', include('persons.urls')),
+    url(r'^admin/', include(admin.site.urls)),
 )
