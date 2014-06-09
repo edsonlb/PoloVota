@@ -10,21 +10,27 @@ from decouple import config
 from unipath import Path
 
 if sys.argv[1] == 'runserver':
-    from settings_secret import * #SEE SETTINGS_SECRET_EXAMPLE.PY (RENAME THE FILE TO: settings_secret.py )
+    # SEE SETTINGS_SECRET_EXAMPLE.PY (RENAME THE FILE TO: settings_secret.py )
+    from settings_secret import * 
+    EMAIL_HOST = SECRET_EMAIL_HOST
+    EMAIL_HOST_USER = SECRET_EMAIL_HOST_USER
+    EMAIL_HOST_PASSWORD = SECRET_EMAIL_HOST_PASSWORD
+    DEFAULT_FROM_EMAIL = SECRET_DEFAULT_FROM_EMAIL
+    SECRET_KEY = SECRET_KEY_SETTINGS
+else:
+    # READ: https://devcenter.heroku.com/articles/config-vars
+    EMAIL_HOST = os.environ['HEROKU_SECRET_EMAIL_HOST']
+    EMAIL_HOST_USER = os.environ['HEROKU_SECRET_EMAIL_HOST_USER']
+    EMAIL_HOST_PASSWORD = os.environ['HEROKU_SECRET_EMAIL_HOST_PASSWORD']
+    DEFAULT_FROM_EMAIL = os.environ['HEROKU_SECRET_DEFAULT_FROM_EMAIL']
+    SECRET_KEY = os.environ['HEROKU_SECRET_KEY_SETTINGS']
+
 
 BASE_DIR = Path(__file__).parent
 
-AUTH_USER_MODEL = 'persons.Person'
-
-EMAIL_HOST = os.environ['HEROKU_SECRET_EMAIL_HOST']
-
-EMAIL_HOST_USER = os.environ['HEROKU_SECRET_EMAIL_HOST_USER']
-
-EMAIL_HOST_PASSWORD = os.environ['HEROKU_SECRET_EMAIL_HOST_PASSWORD']
-
-DEFAULT_FROM_EMAIL = os.environ['HEROKU_SECRET_DEFAULT_FROM_EMAIL']
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+AUTH_USER_MODEL = 'persons.Person'
 
 EMAIL_PORT = 587
 
@@ -32,10 +38,6 @@ EMAIL_USE_TLS = True
 
 HOST_WWW = 'http://polovota.herokuapp.com/'
 #HOST_WWW = 'http://127.0.0.1:8000/'
-
-SECRET_KEY = os.environ['HEROKU_SECRET_KEY_SETTINGS']
-
- S3Client(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 
 DEBUG = (sys.argv[1] == 'runserver')
 
