@@ -24,4 +24,4 @@ class Person(AbstractUser):
         verbose_name_plural = _('Persons')
 
     def __unicode__(self):
-        return unicode(self.first_name + ' (' + self.empresa + ')')
+        return unicode(self.email + ' (' + self.empresa + ')')
