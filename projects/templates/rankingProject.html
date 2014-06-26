@@ -21,7 +21,7 @@
     <tbody>
       {% for project in projects %}
       <tr>
-        <td>{{ project.area }}</td>
+        <td>{% if project.area == 'SOFTWARE' %}<span class="glyphicon glyphicon-cloud" rel="tooltip" title="Software"></span>{% elif project.area == 'HARDWARE' %}<span class="glyphicon glyphicon-hdd" rel="tooltip" title="Hardware"></span>{% elif project.area == 'ELETRÔNICA' %}<span class="glyphicon glyphicon-compressed" rel="tooltip" title="Eletrônica"></span>{% endif %}</td>
         <td>{{ project.tema }}</td>
       </tr>
       {% endfor %}
