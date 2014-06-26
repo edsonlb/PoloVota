@@ -106,3 +106,7 @@ def mostrar(request, numero):
                 return HttpResponseRedirect('/')    
             
     return HttpResponseRedirect('/')
+
+def ranking(request):
+    projects = Project.objects.filter(ativo='SIM').order_by('area', 'tema')
+    return render(request, 'rankingProject.html', {'projects': projects})

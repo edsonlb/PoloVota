@@ -1,0 +1,33 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Projetos Cadastrados{% endblock titulo %}
+
+{% block conteudo %}
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Área</th>
+        <th>Projeto - <span class="glyphicon glyphicon-star-empty" rel="tooltip" title="Primeira Seleção Aprovado."></span>
+        <span class="glyphicon glyphicon glyphicon-star" rel="tooltip" title="Segunda Seleção Aprovado."></span>
+        <span class="glyphicon glyphicon-asterisk" rel="tooltip" title="Terceira Seleção Aprovado."></span>
+        <span class="glyphicon glyphicon-certificate" rel="tooltip" title="Projetos Ganhadores."></span>
+        <span class="badge" rel="tooltip" title="Terceiro Lugar em sua área.">3</span>
+        <span class="badge" rel="tooltip" title="Segundo Lugar em sua área.">2</span>
+        <span class="badge" rel="tooltip" title="Primeiro Lugar em sua área.">1</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for project in projects %}
+      <tr>
+        <td>{{ project.area }}</td>
+        <td>{{ project.tema }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <font size="1" color="gray">Listagem ordenada de forma alfabética em área e tema do projeto.</font>
+</div><!-- FIM TABELA -->
+
+{% endblock conteudo %}

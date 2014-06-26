@@ -1,0 +1,46 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Home{% endblock titulo %}
+
+{% block conteudo %}
+	<div class="col-sm-6" align="center">
+    	<img class="img-responsive" src="{{ STATIC_URL }}/logo/logo_G.png">
+            </div>
+            <div class="col-sm-6" align="center">
+            	<h2>Login Administrativo</h2> 
+
+	<form class="form-horizontal" action="/persons/dologin/" method="POST" role="form">{% csrf_token %}
+		
+		{% if form.errors or msg %}
+			<div class="alert alert-danger alert-dismissable">
+  			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  			<strong>Erro!</strong> <br />
+   			{{ msg }} <br />
+   			{{ form.errors.as_text }}
+   			
+			</div>
+		{% endif %}
+
+    <div class="form-group">
+        <label for="{{ form.email.id_for_label }}" class="col-sm-2 control-label">E-Mail </label>
+        <div class="col-sm-10">
+            <input id="{{ form.email.id_for_label }}" name="{{ form.email.name }}"  value="{{ form.email.value|default_if_none:'' }}" type="email" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="{{ form.password.id_for_label }}" class="col-sm-2 control-label">Senha </label>
+        <div class="col-sm-10">
+            <input id="{{ form.password.id_for_label }}" name="{{ form.password.name }}"  value="{{ form.password.value|default_if_none:'' }}" type="password" class="form-control">
+        </div>
+    </div>
+
+    <div align="center">
+        <button type="submit" class="btn btn-success">Logar</button>
+    </div>
+
+    </form>
+
+    <hr>
+    Você é membro do Pólo Francano de Tecnologia e está com problemas no Login? Envie um e-mail para a nossa lista de e-mail oficial relatando o problema.<br />
+</div>
+{%endblock conteudo %}
