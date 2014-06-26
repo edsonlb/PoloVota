@@ -1,6 +1,6 @@
 # This Python file uses the following encoding: utf-8
 """
-Arquivo Settings.py
+File Settings.py
 """
 
 import os
@@ -9,7 +9,16 @@ from dj_database_url import parse as db_url
 from decouple import config
 from unipath import Path
 
-if sys.argv[1] == 'runserver':
+if 'HEROKU_SECRET_EMAIL_HOST' in os.environ:
+    # READ: https://devcenter.heroku.com/articles/config-vars RUNS REMOTE ON HEROKU
+    EMAIL_HOST = os.environ['HEROKU_SECRET_EMAIL_HOST']
+    EMAIL_HOST_USER = os.environ['HEROKU_SECRET_EMAIL_HOST_USER']
+    EMAIL_HOST_PASSWORD = os.environ['HEROKU_SECRET_EMAIL_HOST_PASSWORD']
+    DEFAULT_FROM_EMAIL = os.environ['HEROKU_SECRET_DEFAULT_FROM_EMAIL']
+    SECRET_KEY = os.environ['HEROKU_SECRET_KEY_SETTINGS']
+    HOST_WWW = 'http://polovota.herokuapp.com/'
+    DEBUG = False
+else:
     # SEE SETTINGS_SECRET_EXAMPLE.PY (RENAME THE FILE TO: settings_secret.py ) RUNS LOCALHOST
     from settings_secret import * 
     EMAIL_HOST = SECRET_EMAIL_HOST
@@ -17,13 +26,8 @@ if sys.argv[1] == 'runserver':
     EMAIL_HOST_PASSWORD = SECRET_EMAIL_HOST_PASSWORD
     DEFAULT_FROM_EMAIL = SECRET_DEFAULT_FROM_EMAIL
     SECRET_KEY = SECRET_KEY_SETTINGS
-else:
-    # READ: https://devcenter.heroku.com/articles/config-vars RUNS REMOTE ON HEROKU
-    EMAIL_HOST = os.environ['HEROKU_SECRET_EMAIL_HOST']
-    EMAIL_HOST_USER = os.environ['HEROKU_SECRET_EMAIL_HOST_USER']
-    EMAIL_HOST_PASSWORD = os.environ['HEROKU_SECRET_EMAIL_HOST_PASSWORD']
-    DEFAULT_FROM_EMAIL = os.environ['HEROKU_SECRET_DEFAULT_FROM_EMAIL']
-    SECRET_KEY = os.environ['HEROKU_SECRET_KEY_SETTINGS']
+    HOST_WWW = 'http://127.0.0.1:8000/'
+    DEBUG = True
 
 
 BASE_DIR = Path(__file__).parent
@@ -35,11 +39,6 @@ AUTH_USER_MODEL = 'persons.Person'
 EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
-
-HOST_WWW = 'http://polovota.herokuapp.com/'
-#HOST_WWW = 'http://127.0.0.1:8000/'
-
-DEBUG = (sys.argv[1] == 'runserver')
 
 TEMPLATE_DEBUG = True
 
