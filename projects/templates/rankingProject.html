@@ -7,8 +7,10 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Área</th>
-        <th>Projeto - <span class="glyphicon glyphicon-star-empty" rel="tooltip" title="Primeira Seleção Aprovado."></span>
+        <th><span class="glyphicon glyphicon-cloud" rel="tooltip" title="Área Software"></span> 
+        <span class="glyphicon glyphicon-hdd" rel="tooltip" title="Área Hardware"></span> 
+        <span class="glyphicon glyphicon-compressed" rel="tooltip" title="Área Eletrônica"></span> 
+         Projeto - <span class="glyphicon glyphicon-star-empty" rel="tooltip" title="Primeira Seleção Aprovado."></span>
         <span class="glyphicon glyphicon glyphicon-star" rel="tooltip" title="Segunda Seleção Aprovado."></span>
         <span class="glyphicon glyphicon-asterisk" rel="tooltip" title="Terceira Seleção Aprovado."></span>
         <span class="glyphicon glyphicon-certificate" rel="tooltip" title="Projetos Ganhadores."></span>
@@ -21,8 +23,7 @@
     <tbody>
       {% for project in projects %}
       <tr>
-        <td>{% if project.area == 'SOFTWARE' %}<span class="glyphicon glyphicon-cloud" rel="tooltip" title="Software"></span>{% elif project.area == 'HARDWARE' %}<span class="glyphicon glyphicon-hdd" rel="tooltip" title="Hardware"></span>{% elif project.area == 'ELETRÔNICA' %}<span class="glyphicon glyphicon-compressed" rel="tooltip" title="Eletrônica"></span>{% endif %}</td>
-        <td>{{ project.tema }}</td>
+        <td>{% if project.area == 'SOFTWARE' %}<span class="glyphicon glyphicon-cloud" rel="tooltip" title="Software"></span>{% elif project.area == 'HARDWARE' %}<span class="glyphicon glyphicon-hdd" rel="tooltip" title="Hardware"></span>{% elif project.area == 'ELETRÔNICA' %}<span class="glyphicon glyphicon-compressed" rel="tooltip" title="Eletrônica"></span>{% endif %} {{ project.tema }} - </td>
       </tr>
       {% endfor %}
     </tbody>
