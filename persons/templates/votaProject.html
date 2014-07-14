@@ -1,0 +1,36 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Votação - Vote{% endblock titulo %}
+
+{% block conteudo %}
+<div align="center">
+	<a class="btn btn-primary" href="/persons/initial/"><span class="glyphicon glyphicon-edit"></span> Vote</a>
+	<a class="btn btn-info" href="/persons/voted/"><span class="glyphicon glyphicon-check"></span> Já Votados</a>
+	<a class="btn btn-warning" href="/persons/ranking/"><span class="glyphicon glyphicon-expand"></span> Ranking</a>
+	<a class="btn btn-danger" href="/persons/logout/"><span class="glyphicon glyphicon-share"></span> Logout</a>
+	<br />
+	<h2>{{ title }}</h2>
+</div>
+<hr>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Projeto</th>
+        <th>Aluno</th>
+        <th>Instituição</th>
+      </tr>
+    </thead>
+    <tbody>
+ 	{% for project in projects %}
+      <tr>
+        <td>{% if project.area == 'INFORMÁTICA' %}<span class="glyphicon glyphicon-cloud" rel="tooltip" title="Informática"></span>{% elif project.area == 'MECÂNICA' %}<span class="glyphicon glyphicon-cog" rel="tooltip" title="Mecânica"></span>{% elif project.area == 'ELETRÔNICA' %}<span class="glyphicon glyphicon-compressed" rel="tooltip" title="Eletrônica"></span>{% endif %} <a href="/persons/show/{{ project.pk }}/">{{ project.tema }}</a></td>
+        <td>{{ project.liderNome }}</td>
+        <td>{{ project.universidade }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div><!-- FIM TABELA -->
+
+{% endblock conteudo %}

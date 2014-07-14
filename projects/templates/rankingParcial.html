@@ -1,0 +1,90 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Projetos Cadastrados{% endblock titulo %}
+
+{% block conteudo %}
+<div align="center">
+  <a class="btn btn-primary" href="/persons/initial/"><span class="glyphicon glyphicon-edit"></span> Vote</a>
+  <a class="btn btn-info" href="/persons/voted/"><span class="glyphicon glyphicon-check"></span> Já Votados</a>
+  <a class="btn btn-warning" href="/persons/ranking/"><span class="glyphicon glyphicon-expand"></span> Ranking</a>
+  <a class="btn btn-danger" href="/persons/logout/"><span class="glyphicon glyphicon-share"></span> Logout</a>
+  <br />
+  <h2>RANKING</h2>
+</div>
+<hr>
+<div class="table-responsive">
+  <h2><span class="glyphicon glyphicon-cloud" rel="tooltip" title="Informática"></span> Informática</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Projeto</th>
+        <th>Nota</th>
+        <th>Aluno</th>
+        <th>Instituição</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for project in projectsInformatica %}
+      <tr>
+        <td>{{ project.project.pk }}</td>
+        <td><span rel="tooltip" title="{{ project.project.descricao }}">{{ project.project.tema }}</span></td>
+        <td><span class="badge">{{ project.avg }}</span></td>
+        <td>{{ project.project.liderNome }}</td>
+        <td>{{ project.project.universidade }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr>
+  <h2><span class="glyphicon glyphicon-cog" rel="tooltip" title="Mecânica"></span> Mecânica</h2>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Projeto</th>
+        <th>Nota</th>
+        <th>Aluno</th>
+        <th>Instituição</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for project in projectsMecanica %}
+      <tr>
+        <td>{{ project.project.pk }}</td>
+        <td><span rel="tooltip" title="{{ project.project.descricao }}">{{ project.project.tema }}</span></td>
+        <td><span class="badge">{{ project.avg }}</span></td>
+        <td>{{ project.project.liderNome }}</td>
+        <td>{{ project.project.universidade }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr>
+  <h2><span class="glyphicon glyphicon-compressed" rel="tooltip" title="Eletrônica"></span> Eletrônica</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Projeto</th>
+        <th>Nota</th>
+        <th>Aluno</th>
+        <th>Instituição</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for project in projectsEletronica %}
+      <tr>
+        <td>{{ project.project.pk }}</td>
+        <td><span rel="tooltip" title="{{ project.project.descricao }}">{{ project.project.tema }}</span></td>
+        <td><span class="badge">{{ project.avg }}</span></td>
+        <td>{{ project.project.liderNome }}</td>
+        <td>{{ project.project.universidade }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <font size="1" color="gray">Listagem ordenada de por média de pontos obtidos.</font>
+</div><!-- FIM TABELA -->
+
+{% endblock conteudo %}

@@ -20,7 +20,7 @@
     <tbody>
       {% for project in projects %}
       <tr>
-        <td>{% if project.area == 'INFORMÁTICA' %}<span class="glyphicon glyphicon-cloud" rel="tooltip" title="Informática"></span>{% elif project.area == 'MECÂNICA' %}<span class="glyphicon glyphicon-hdd" rel="tooltip" title="Mecânica"></span>{% elif project.area == 'ELETRÔNICA' %}<span class="glyphicon glyphicon-compressed" rel="tooltip" title="Eletrônica"></span>{% endif %} {{ project.tema }} - </td>
+        <td>{% if project.area == 'INFORMÁTICA' %}<span class="glyphicon glyphicon-cloud" rel="tooltip" title="Informática"></span>{% elif project.area == 'MECÂNICA' %}<span class="glyphicon glyphicon-cog" rel="tooltip" title="Mecânica"></span>{% elif project.area == 'ELETRÔNICA' %}<span class="glyphicon glyphicon-compressed" rel="tooltip" title="Eletrônica"></span>{% endif %} {{ project.tema }} - </td>
       </tr>
       {% endfor %}
     </tbody>

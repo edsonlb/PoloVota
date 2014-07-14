@@ -3,13 +3,36 @@
 {% block titulo %}Cadastro do Projeto{% endblock titulo %}
 
 {% block conteudo %}
+{% if vote %}
+<form class="form-horizontal" action="/persons/score/" method="POST" role="form">
+{% else %}
 <form class="form-horizontal" action="/projects/save/" method="POST" role="form">
-    {% csrf_token %}
+{% endif %}
 
+{% csrf_token %}
+
+{% if vote %}
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong>Aviso:</strong> Caro avaliador, seja crítico & sensato com relação a este projeto. Avalie os seguintes tópicos para dar a sua nota:<br/>
+    <ul>
+    <li>Design;</li>
+    <li>Grau de dificuldade;</li>
+    <li>Valor científico de pesquisa;</li>
+    <li>Conteúdo da documentação técnica;</li>
+    <li>Apresentação e conteúdo do material enviado;</li>
+    <li>Montagem mecânica e eletroeletrônica;</li>
+    <li>Qualidade de software e firmware;</li>
+    <li>Viabilidade técnica e comercial;</li>
+    <li>Sintonia temporal entre execução das tarefas e o cronograma de fechamento.</li>
+    </ul>
+</div>
+{% else %}
 <div class="alert alert-info alert-dismissable">
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
   <strong>Aviso:</strong> Fique atento aos prazos para preenchimento dos campos.  Informe-se <a href="/projects/prazos/" target="_blank">aqui</a>.
 </div>
+{% endif %}
 
 {% if form.errors %}
 <div class="alert alert-danger alert-dismissable">
@@ -109,7 +132,8 @@
     </div>
 
     <div class="form-group">
-        <label for="{{ form.liderSocial.id_for_label }}" class="col-sm-2 control-label">Social</label>
+        <label for="{{ form.liderSocial.id_for_label }}" class="col-sm-2 control-label">
+        {% if form.liderSocial.value %}<a href="{{form.liderSocial.value}}" target="_blank">Social</a>{% else %}Social{% endif %}</label>
         <div class="col-sm-10">
             <input id="{{ form.liderSocial.id_for_label }}" name="{{ form.liderSocial.name }}"  value="{{ form.liderSocial.value|default_if_none:'' }}"  placeholder="Ex: https://www.facebook.com/nomeLider"  type="text" class="form-control">
             <p class="help-block">Link para rede social. (Facebook, Linkedin, Google Plus & etc...) (Líder) <span class="glyphicon glyphicon-question-sign"  rel="tooltip" title="Campo Facultativo."></span></p>
@@ -128,7 +152,8 @@
     <h3>Projeto <small>Fique atento aos prazos de entrega.</small></h3>
 
     <div class="form-group">
-        <label for="{{ form.link_slides.id_for_label }}" class="col-sm-2 control-label">Slide de Apresentação</label>
+        <label for="{{ form.link_slides.id_for_label }}" class="col-sm-2 control-label">
+        {% if form.link_slides.value %}<a href="{{form.link_slides.value}}" target="_blank">Slide de Apresentação</a>{% else %}Slide de Apresentação{% endif %}</label>
         <div class="col-sm-10">
             <input id="{{ form.link_slides.id_for_label }}" name="{{ form.link_slides.name }}"  value="{{ form.link_slides.value|default_if_none:'' }}"  placeholder="Ex: http://www.slideshare.net/cuchullainn/jedi-productivity"  type="text" class="form-control">
             <p class="help-block">Slides de apresentação do projeto. 5 slides para uma apresentação de até 15min. Links do <a href="http://pt.slideshare.net/" target="_blank">Slideshare</a> ou <a href="https://docs.google.com" target="_blank">Google Docs</a></p>
@@ -136,7 +161,8 @@
     </div>
 
     <div class="form-group">
-        <label for="{{ form.link_monografia.id_for_label }}" class="col-sm-2 control-label">Monografia/Artigo</label>
+        <label for="{{ form.link_monografia.id_for_label }}" class="col-sm-2 control-label">
+        {% if form.link_monografia.value %}<a href="{{form.link_monografia.value}}" target="_blank">Monografia/Artigo</a>{% else %}Monografia/Artigo{% endif %}</label>
         <div class="col-sm-10">
             <input id="{{ form.link_monografia.id_for_label }}" name="{{ form.link_monografia.name }}"  value="{{ form.link_monografia.value|default_if_none:'' }}"  placeholder="Ex: https://docs.google.com/document/d/1XLwJnuuHjRXjx-opO5bWTTXu6ytjfj6dyxl8SRYHKX8/preview"  type="text" class="form-control">
             <p class="help-block">Estudo acadêmico do projeto. Informar o link do PDF ou link do <a href="https://docs.google.com" target="_blank">Google Docs</a></p>
@@ -144,7 +170,8 @@
     </div>
 
     <div class="form-group">
-        <label for="{{ form.link_modelagem.id_for_label }}" class="col-sm-2 control-label">Modelagem do Sistema</label>
+        <label for="{{ form.link_modelagem.id_for_label }}" class="col-sm-2 control-label">
+        {% if form.link_modelagem.value %}<a href="{{form.link_modelagem.value}}" target="_blank">Modelagem do Sistema</a>{% else %}Modelagem do Sistema{% endif %}</label>
         <div class="col-sm-10">
             <input id="{{ form.link_modelagem.id_for_label }}" name="{{ form.link_modelagem.name }}"  value="{{ form.link_modelagem.value|default_if_none:'' }}"  placeholder="Ex: https://docs.google.com/document/d/1XLwJnuuHjRXjx-opO5bWTTXu6ytjfj6dyxl8SRYHKX8/preview"  type="text" class="form-control">
             <p class="help-block">Link para visualizar as modelagens do sistema. Ex: Diagramas, Fluxogramas & Casos de Uso.</p>
@@ -152,7 +179,8 @@
     </div>
 
     <div class="form-group">
-        <label for="{{ form.link_website.id_for_label }}" class="col-sm-2 control-label">Website</label>
+        <label for="{{ form.link_website.id_for_label }}" class="col-sm-2 control-label">
+        {% if form.link_website.value %}<a href="{{form.link_website.value}}" target="_blank">Website</a>{% else %}Website{% endif %}</label>
         <div class="col-sm-10">
             <input id="{{ form.link_website.id_for_label }}" name="{{ form.link_website.name }}"  value="{{ form.link_website.value|default_if_none:'' }}"  placeholder="Ex: http://meu_projeto.herokuapp.com"  type="text" class="form-control">
             <p class="help-block">Se o aplicativo for Web, informar o endereço, caso contrário o endereço onde possa ser feito o download do mesmo (se disponível). (Ex: <a href="https://play.google.com/store" target="_blank">Google Play</a>, <a href="https://drive.google.com" target="_blank">Google Drive</a>, <a href="http://www.4shared.com/" target="_blank">4Shared</a> e etc...) <span class="glyphicon glyphicon-question-sign"  rel="tooltip" title="Campo Facultativo."></span></p>
@@ -160,7 +188,8 @@
     </div>
 
     <div class="form-group">
-        <label for="{{ form.link_outros.id_for_label }}" class="col-sm-2 control-label">Link Adicional</label>
+        <label for="{{ form.link_outros.id_for_label }}" class="col-sm-2 control-label">
+        {% if form.link_outros.value %}<a href="{{form.link_outros.value}}" target="_blank">Link Adicional</a>{% else %}Link Adicional{% endif %}</label>
         <div class="col-sm-10">
             <input id="{{ form.link_outros.id_for_label }}" name="{{ form.link_outros.name }}"  value="{{ form.link_outros.value|default_if_none:'' }}"  placeholder="Ex: https://www.facebook.com/appcenter/picmonkey"  type="text" class="form-control">
             <p class="help-block">Campo adicional para você colocar algum link de sua preferência para servir de apoio ao seu projeto. Ex: Link do App no Facebook, Fanpage & etc... <span class="glyphicon glyphicon-question-sign"  rel="tooltip" title="Campo Facultativo."></span></p>
@@ -168,20 +197,43 @@
     </div>
 
     <div class="form-group">
-        <label for="{{ form.link_versionamento.id_for_label }}" class="col-sm-2 control-label">Versionamento</label>
+        <label for="{{ form.link_versionamento.id_for_label }}" class="col-sm-2 control-label">
+        {% if form.link_versionamento.value %}<a href="{{form.link_versionamento.value}}" target="_blank">Versionamento</a>{% else %}Versionamento{% endif %}</label>
         <div class="col-sm-10">
             <input id="{{ form.link_versionamento.id_for_label }}" name="{{ form.link_versionamento.name }}"  value="{{ form.link_versionamento.value|default_if_none:'' }}"  placeholder="Ex: https://github.com/edsonlb/PoloVota"  type="text" class="form-control">
             <p class="help-block">Caso possua, informe o link do repositório de códigos. Ex: <a href="https://github.com" target="_blank">GitHub</a>, <a href="https://bitbucket.org/" target="_blank">Bitbucket</a>, <a href="https://code.google.com/" target="_blank">Google Code</a> & etc... <span class="glyphicon glyphicon-question-sign"  rel="tooltip" title="Campo Facultativo."></span></p>
         </div>
     </div>
 
-    {% if acao != 'view' %}
+    {% if vote %}
+    <hr>
+    <div class="form-group">
+        <label for="nota" class="col-sm-2 control-label">NOTA DO PROJETO:</label>
+        <div class="col-sm-10">
+        <div align="center">
+        AVALIACAO {{avaliacao}}
+        <select id="nota" name="nota" class="form-control">
+            <option value="1" {% if avaliacao = 1 %}selected{%endif%}>1</option>
+            <option value="2" {% if avaliacao = 2 %}selected{%endif%}>2</option>
+            <option value="3" {% if avaliacao = 3 %}selected{%endif%}>3</option>
+            <option value="4" {% if avaliacao = 4 %}selected{%endif%}>4</option>
+            <option value="5" {% if avaliacao = 5 %}selected{%endif%}>5</option>
+            <option value="6" {% if avaliacao = 6 %}selected{%endif%}>6</option>
+            <option value="7" {% if avaliacao = 7 %}selected{%endif%}>7</option>
+            <option value="8" {% if avaliacao = 8 %}selected{%endif%}>8</option>
+            <option value="9" {% if avaliacao = 9 %}selected{%endif%}>9</option>
+            <option value="10" {% if avaliacao = 10 %}selected{%endif%}>10</option>
+        </select>
+    </div>
+        </div>
+    </div>
+    <div align="center">
+        <button type="submit" class="btn btn-danger">Votar</button>
+    </div>
+    {% else %}
     <hr>
     <div align="center">
         <button type="submit" class="btn btn-success">Gravar</button>
-        {% if pessoa.pk > 0 %}
-        <a class="btn btn-danger" href="/pessoas/excluir/{{ pessoa.pk }}/">Excluir</a>
-        {% endif %}
     </div>
     {% endif %}
 </form>

@@ -10,5 +10,4 @@ urlpatterns = patterns('projects.views',
     url(r'^view/(?P<numero>\d+)/$', 'mostrar'),
     url(r'^validation/(?P<numero>\d+)/$', 'validation_ativo'),
     url(r'^prazos/$', 'prazos'),
-
 )
