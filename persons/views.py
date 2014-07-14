@@ -59,12 +59,12 @@ def logoutRedirect(request):
 
 @login_required(login_url='/persons/login/')
 def loginInicial(request):
-    projects = Project.objects.raw("select * from projects_project p where id not in (select p.id from projects_project  p inner join persons_personvote pv on (pv.project_id = p.id and pv.etapa like '%%%s%%' and pv.person_id = %d) where p.ativo = 'SIM') and p.ativo = 'SIM' order by p.area, p.tema"%(ETAPA,request.user.pk))
+    projects = Project.objects.raw("select p.* from projects_project p where id not in (select p.id from projects_project  p inner join persons_personvote pv on (pv.project_id = p.id and pv.etapa like '%%%s%%' and pv.person_id = %d) where p.ativo = 'SIM') and p.ativo = 'SIM' order by p.area, p.tema"%(ETAPA,request.user.pk))
     return render(request, 'votaProject.html', {'projects':projects, 'title':'VOTE'})
 
 @login_required(login_url='/persons/login/')
 def loginVoted(request):
-    projects = Project.objects.raw("select p.* from projects_project  p inner join persons_personvote pv on (pv.project_id = p.id and pv.etapa like '%%%s%%' and pv.person_id = %d) where p.ativo = 'SIM' order by p.area, p.tema"%(ETAPA,request.user.pk))
+    projects = Project.objects.raw("select p.* from projects_project p inner join persons_personvote pv on (pv.project_id = p.id and pv.etapa like '%%%s%%' and pv.person_id = %d) where p.ativo = 'SIM' order by p.area, p.tema"%(ETAPA,request.user.pk))
     return render(request, 'votaProject.html', {'projects':projects, 'title':'JÁ VOTADOS'})
 
 @login_required(login_url='/persons/login/')
@@ -99,11 +99,11 @@ def saveScore(request):
 
 @login_required(login_url='/persons/login/')
 def ranking(request):
-    sql = "select  avg(nota) as avg, pv.* from persons_personvote pv inner join projects_project p on (p.id = pv.project_id and p.ativo='SIM' and p.area='INFORMÁTICA') where pv.etapa like '%%%s%%' GROUP BY pv.project_id order by avg(nota) desc"%(ETAPA)
+    sql = "select  avg(nota) as avg, pv.* from persons_personvote pv inner join projects_project p on (p.id = pv.project_id and p.ativo='SIM' and p.area='INFORMÁTICA') where pv.etapa like '%%%s%%' GROUP BY pv.project_id order by avg(nota) desc LIMIT 15"%(ETAPA)
     projectsInformatica = PersonVote.objects.raw(sql.decode('utf-8'))[:15]
-    sql = "select  avg(nota) as avg, pv.* from persons_personvote pv inner join projects_project p on (p.id = pv.project_id and p.ativo='SIM' and p.area='MECÂNICA') where pv.etapa like '%%%s%%' GROUP BY pv.project_id order by avg(nota) desc"%(ETAPA)
+    sql = "select  avg(nota) as avg, pv.* from persons_personvote pv inner join projects_project p on (p.id = pv.project_id and p.ativo='SIM' and p.area='MECÂNICA') where pv.etapa like '%%%s%%' GROUP BY pv.project_id order by avg(nota) desc LIMIT 15"%(ETAPA)
     projectsMecanica = PersonVote.objects.raw(sql.decode('utf-8'))[:15]
-    sql = "select  avg(nota) as avg, pv.* from persons_personvote pv inner join projects_project p on (p.id = pv.project_id and p.ativo='SIM' and p.area='ELETRÔNICA') where pv.etapa like '%%%s%%' GROUP BY pv.project_id order by avg(nota) desc"%(ETAPA)
+    sql = "select  avg(nota) as avg, pv.* from persons_personvote pv inner join projects_project p on (p.id = pv.project_id and p.ativo='SIM' and p.area='ELETRÔNICA') where pv.etapa like '%%%s%%' GROUP BY pv.project_id order by avg(nota) desc LIMIT 15"%(ETAPA)
     projectsEletronica = PersonVote.objects.raw(sql.decode('utf-8'))[:15]
     
     return render(request, 'rankingParcial.html', {
