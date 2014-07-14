@@ -17,7 +17,7 @@ if 'HEROKU_SECRET_EMAIL_HOST' in os.environ:
     DEFAULT_FROM_EMAIL = os.environ['HEROKU_SECRET_DEFAULT_FROM_EMAIL']
     SECRET_KEY = os.environ['HEROKU_SECRET_KEY_SETTINGS']
     HOST_WWW = 'http://polovota.herokuapp.com/'
-    DEBUG = False
+    DEBUG = True
 else:
     # SEE SETTINGS_SECRET_EXAMPLE.PY (RENAME THE FILE TO: settings_secret.py ) RUNS LOCALHOST
     from settings_secret import * 
