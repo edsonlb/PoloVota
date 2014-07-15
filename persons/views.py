@@ -59,7 +59,8 @@ def logoutRedirect(request):
 
 @login_required(login_url='/persons/login/')
 def loginInicial(request):
-    projects = Project.objects.raw("select p.* from projects_project p where id not in (select p.id from projects_project  p inner join persons_personvote pv on (pv.project_id = p.id and pv.etapa like '%%%s%%' and pv.person_id = %d) where p.ativo = 'SIM') and p.ativo = 'SIM' order by p.area, p.tema"%(ETAPA,request.user.pk))
+    #projects = Project.objects.raw("select p.* from projects_project p where id not in (select p.id from projects_project  p inner join persons_personvote pv on (pv.project_id = p.id and pv.etapa like '%%%s%%' and pv.person_id = %d) where p.ativo = 'SIM') and p.ativo = 'SIM' order by p.area, p.tema"%(ETAPA,request.user.pk))
+    projects = Project.objects.filter(person_id=request.user.pk)
     return render(request, 'votaProject.html', {'projects':projects, 'title':'VOTE'})
 
 @login_required(login_url='/persons/login/')

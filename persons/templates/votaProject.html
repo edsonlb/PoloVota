@@ -22,15 +22,18 @@
       </tr>
     </thead>
     <tbody>
- 	{% for project in projects %}
+
+    {% for project in projects %}
       <tr>
         <td>{% if project.area == 'INFORMÁTICA' %}<span class="glyphicon glyphicon-cloud" rel="tooltip" title="Informática"></span>{% elif project.area == 'MECÂNICA' %}<span class="glyphicon glyphicon-cog" rel="tooltip" title="Mecânica"></span>{% elif project.area == 'ELETRÔNICA' %}<span class="glyphicon glyphicon-compressed" rel="tooltip" title="Eletrônica"></span>{% endif %} <a href="/persons/show/{{ project.pk }}/">{{ project.tema }}</a></td>
         <td>{{ project.liderNome }}</td>
         <td>{{ project.universidade }}</td>
       </tr>
     {% endfor %}
+ 	
     </tbody>
   </table>
+  conteudo: {{ projects.count }}
 </div><!-- FIM TABELA -->
 
 {% endblock conteudo %}
