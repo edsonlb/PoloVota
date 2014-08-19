@@ -2,7 +2,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth import authenticate, logout, login as auth_login
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q, Avg
+from django.db.models import Q, Avg, Count
 from persons.models import Person, PersonVote
 from persons.forms import LoginForm
 from projects.models import Project
@@ -102,15 +102,15 @@ def saveScore(request):
 
 @login_required(login_url='/persons/login/')
 def ranking(request):
-    sql = "select pv.*, avg(nota) as avg from persons_personvote pv inner join projects_project p on (p.id = pv.project_id and p.ativo='SIM' and p.area='INFORMÁTICA') where pv.etapa like '%%%s%%' GROUP BY pv.project_id order by avg(nota) desc LIMIT 15"%(ETAPA)
-    projectsInformatica = PersonVote.objects.raw(sql.decode('utf-8'))[:15]
+    #sql = "select pv.*, avg(nota) as avg from persons_personvote pv inner join projects_project p on (p.id = pv.project_id and p.ativo='SIM' and p.area='INFORMÁTICA') where pv.etapa like '%%%s%%' GROUP BY pv.project_id order by avg(nota) desc LIMIT 15"%(ETAPA)
+    #projectsInformatica = PersonVote.objects.raw(sql.decode('utf-8'))[:15]
     sql = "select pv.*, avg(nota) as avg from persons_personvote pv inner join projects_project p on (p.id = pv.project_id and p.ativo='SIM' and p.area='MECÂNICA') where pv.etapa like '%%%s%%' GROUP BY pv.project_id order by avg(nota) desc LIMIT 15"%(ETAPA)
     projectsMecanica = PersonVote.objects.raw(sql.decode('utf-8'))[:15]
     sql = "select pv.*, avg(nota) as avg from persons_personvote pv inner join projects_project p on (p.id = pv.project_id and p.ativo='SIM' and p.area='ELETRÔNICA') where pv.etapa like '%%%s%%' GROUP BY pv.project_id order by avg(nota) desc LIMIT 15"%(ETAPA)
     projectsEletronica = PersonVote.objects.raw(sql.decode('utf-8'))[:15]
 
-    #projectsInformatica = Project.objects.filter(area='INFORMÁTICA', personvote__etapa__contains=ETAPA, ativo='SIM').aggregate(Avg('personvote__nota'))
-    
+    projectsInformatica = PersonVote.objects.values('project').filter(project__area='INFORMÁTICA', project__ativo='SIM').aggregate(Avg('nota'))
+    #https://gist.github.com/carymrobbins/8477219
     return render(request, 'rankingParcial.html', {
         'projectsInformatica': projectsInformatica, 
         'projectsMecanica': projectsMecanica,

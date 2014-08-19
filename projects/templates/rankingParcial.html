@@ -25,17 +25,18 @@
       </tr>
     </thead>
     <tbody>
-      {% for project in projectsInformatica %}
-      <tr>
-        <td>{{ project.project.pk }}</td>
-        <td><span rel="tooltip" title="{{ project.project.descricao }}">{{ project.project.tema }}</span></td>
-        <td><span class="badge">{{ project.avg }}</span></td>
-        <td>{{ project.project.liderNome }}</td>
-        <td>{{ project.project.universidade }}</td>
-      </tr>
-      {% endfor %}
+      {% for object in projectsInformatica %}
+    <tr>
+      <td>{{ object.project.pk }}</td>
+        <td><span rel="tooltip" title="{{ object.project.descricao }}">{{ object.project.tema }}</span></td>
+        <td><span class="badge">{{ object.nota__avg }}</span></td>
+        <td>{{ object.project.liderNome }}</td>
+        <td>{{ object.project.universidade }}</td>
+     </tr>
+    {% endfor %}
     </tbody>
   </table>
+  Total: {{ projectsInformatica.count }}
   <hr>
   <h2><span class="glyphicon glyphicon-cog" rel="tooltip" title="Mecânica"></span> Mecânica</h2>
     <table class="table table-striped">
