@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     url(r'^validation_error/$', 'core.views.validation_error'),
     url(r'^projects/', include('projects.urls')),
     url(r'^persons/', include('persons.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    #url(r'^admin/', include(admin.site.urls)),
 )
